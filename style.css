@@ -34,33 +34,52 @@ body {
 .message {
     padding: 10px;
     border-bottom: 1px solid #2c3e50;
-    display: flex;
-    flex-direction: column;
-    word-wrap: break-word; /* Ensure long words break down to the next line */
+    word-wrap: break-word;
+    max-width: 70%; /* Adjust the maximum width of the message */
+}
+
+.message.left .user{
+    color: black;
+}
+
+.message.right .user{
+    color: rgb(0, 60, 255);
 }
 
 .user {
     font-weight: bold;
     margin-bottom: 5px;
-    color: #3498db;
+  
 }
 
+.message a {
+    color: #b700ff; /* Link color */
+    text-decoration: underline; /* Underline the links */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.message a:hover {
+    color: #2980b9; /* Hover color */
+}
+
+
 .message.right {
-    align-self: flex-end;
+    margin-left: auto;
     background-color: #2ecc71;
     color: #fff;
     border-radius: 12px 12px 0 12px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .message.left {
-    align-self: flex-start;
     background-color: #3498db;
     border-radius: 12px 12px 12px 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
+
 
 form {
     display: flex;
-    align-items: center;
     background-color: #2c3e50;
     border-top: 1px solid #34495e;
     padding: 10px;
@@ -72,30 +91,12 @@ form {
     border: none;
     font-size: 16px;
     border-radius: 6px;
-    margin-right: 10px;
-    background-color: #fff; /* Highlight user's input background */
-    color: #333; /* Text color for better readability */
-}
-
-@media(min-width:200px) and (max-width:600px){
-    #input{
-        margin-right: 3px;
-    }
-
-    
-button {
-    padding:2px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    font-size: 16px;
-}
+    background-color: #fff;
+    color: #333;
 }
 
 button {
-    padding: 5px 8px;
+    padding: 10px 16px;
     background-color: #3498db;
     color: white;
     border: none;
@@ -119,6 +120,18 @@ button:hover {
     padding: 10px;
 }
 
-#input-container input {
-    flex: 1;
+@media (min-width: 200px) and (max-width: 600px) {
+    #input {
+        margin-right: 3px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .message.right,
+    .message.left {
+        max-width: 60%; /* Adjust the maximum width for smaller screens */
+    }
 }

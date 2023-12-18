@@ -31,17 +31,31 @@ $(function () {
         const { user, message } = data;
         const messageContainer = $('<li>').addClass('message');
         const userElement = $('<span>').addClass('user').text(user);
-        const messageElement = $('<span>').text(message);
-
+        const messageElement = $('<span>').html(' : ' + linkify(message)); // Add space before the message
+    
         messageContainer.append(userElement, messageElement);
-
+    
         if (user === username) {
             messageContainer.addClass('right');
+        } else {
+            messageContainer.addClass('left');
         }
-
+    
         $('#messages').append(messageContainer);
         $('#messages').scrollTop($('#messages')[0].scrollHeight);
     }
+    
+    // Function to identify and convert links in a message
+    function linkify(message) {
+        // Regular expression to identify links in the message
+        const linkRegex = /(https?:\/\/[^\s]+)/g;
+        
+        // Replace links with clickable HTML
+        const linkedMessage = message.replace(linkRegex, '<a href="$1" target="_blank">$1</a>');
+        
+        return linkedMessage;
+    }
+    
 
     // Function to set a cookie
     function setCookie(name, value, days = 7) {
