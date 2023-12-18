@@ -6,12 +6,20 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-app.use(express.static(__dirname));
+// Track connected users
+let userCount = 0;
 
 io.on('connection', (socket) => {
+    // Increment user count when a user connects
+    userCount++;
+    io.emit('userCount', userCount);
+
     console.log('a user connected');
 
     socket.on('disconnect', () => {
+        // Decrement user count when a user disconnects
+        userCount--;
+        io.emit('userCount', userCount);
         console.log('user disconnected');
     });
 
@@ -19,6 +27,8 @@ io.on('connection', (socket) => {
         io.emit('chat message', msg);
     });
 });
+
+app.use(express.static(__dirname));
 
 const PORT = process.env.PORT || 3000;
 

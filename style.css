@@ -135,3 +135,8 @@ button:hover {
         max-width: 60%; /* Adjust the maximum width for smaller screens */
     }
 }
+
+
+.online-users{
+    float:right;
+}

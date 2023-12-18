@@ -14,6 +14,15 @@ $(function () {
         }
     }
 
+     // Function to update user count on the UI
+     function updateUserCount(count) {
+        $('#user-count').text(count);
+    }
+
+    socket.on('userCount', (count) => {
+        console.log(`Number of users online: ${count}`);
+        updateUserCount(count);
+    });
     $('form').submit(function () {
         const message = $('#input').val();
         if (message.trim() !== '') {
