@@ -134,6 +134,10 @@ button:hover {
     .message.left {
         max-width: 60%; /* Adjust the maximum width for smaller screens */
     }
+
+    body{
+        height: 95vh;
+    }
 }
 
 
